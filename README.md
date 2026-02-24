@@ -1,52 +1,55 @@
 # 🧬 Multi-Class Classification of Cancer Types using TCGA Pan-Cancer RNA-Seq Data
 
-This repository contains a high-performance bioinformatics pipeline designed to classify various cancer types using genomic data. The project is based on a technical paper authored by **Sümeyye Bakırdal**.
+This repository contains a high-performance bioinformatics pipeline for classifying 33 different cancer types using high-dimensional genomic data. The project is based on the research and technical paper authored by **Sümeyye Bakırdal**.
 
 ---
 
 ## 📄 Technical Paper (Original in Turkish)
 The full research paper is available in this repository: `Technical_Paper_Cancer_Classification.pdf`.
 
-> **Note:** While the full text is in Turkish, the methodology, experimental results, and key visualizations are summarized below in English for international review.
+> **Note:** While the full paper is in Turkish, the methodology, dataset details, and experimental results are summarized below in English for international review.
 
 ---
 
-## 🧬 Project Overview
-Accurate molecular classification of cancer is vital for personalized medicine. This study utilizes **RNA-Seq gene expression profiles** from the **The Cancer Genome Atlas (TCGA) Pan-Cancer Atlas** to predict cancer types based on molecular signatures.
+## 📂 Dataset & Source
+This research utilizes the standardized **TCGA (The Cancer Genome Atlas) Pan-Cancer Atlas** datasets. 
 
-### 🛠️ Key Methodologies
-* **Data Integration:** Merging RNA-Seq expression data with **TCGA-CDR (Clinical Data Resource)**.
-* **Feature Engineering:** Variance thresholding and **SelectKBest (ANOVA F-test)** for biomarker selection.
-* **Dimensionality Reduction:** **PCA** for high-dimensional data visualization.
-* **Model Benchmarking:** Comparative analysis of Logistic Regression, Random Forest, SVM, and Neural Networks.
+### 1. Genomic Data (RNA-Seq)
+* **File Name:** `EBPlusPlusAdjustPANCAN_IlluminaHiSeq_RNASeqV2.geneExp.tsv`
+* **Description:** This is the "final freeze" batch-corrected mRNA expression profile. The "EBPlusPlusAdjust" method was used to remove technical variations (batch effects) across different sequencing centers, ensuring high data quality for Machine Learning.
 
----
-
-## 📊 Experimental Results & Findings
-The models were validated using **5-fold cross-validation**.
-
-| Model | Peak Accuracy | Status |
-| :--- | :--- | :--- |
-| **Logistic Regression** | **94.6%** | ✅ Best Model |
-| Random Forest | 94.5% | ✅ High Stability |
-| SVM | 93.32% | ✅ Robust |
-
-### 📈 Visualizations
-* **PCA Plots:** To visualize how cancer types cluster in a 2D space.
-* **Confusion Matrices:** Detailed evaluation of precision and recall for each category.
+### 2. Clinical Metadata (TCGA-CDR)
+* **File Name:** `TCGA-CDR-SupplementalTableS1.xlsx`
+* **Description:** The Clinical Data Resource (CDR) file used to map patient barcodes to specific cancer types (e.g., BRCA, LUAD, GBM).
 
 ---
 
-## 🚀 Getting Started
+## 🛠️ Methodology
+The pipeline implements a rigorous bioinformatics workflow:
+* **Preprocessing:** Log-transformation and standard scaling of gene expression levels.
+* **Feature Selection:** * **Variance Thresholding:** To remove low-variance genes.
+  * **SelectKBest (ANOVA F-test):** Statistical selection of the top 500 most discriminative genes.
+* **Dimensionality Reduction:** **PCA** was used for high-dimensional data visualization and cluster analysis.
+* **Benchmarking:** Comparative study of Logistic Regression, Random Forest, SVM, and Neural Networks (MLP).
 
-### 📋 Prerequisites
-Ensure you have the following Python libraries installed:
-`pandas`, `numpy`, `scikit-learn`, `seaborn`, `matplotlib`
+---
 
-### 💻 Execution
-1. Clone the repository.
-2. Ensure the TCGA datasets are in the project directory.
-3. Run the main script:
-   ```bash
-   python cancer_classification.py
- 
+## 📊 Key Results
+* **Best Performing Model:** Logistic Regression
+* **Validation Accuracy:** **94.6%** (via 5-fold cross-validation).
+* **Finding:** Molecular signatures from RNA-Seq data provide highly accurate markers for cancer type differentiation.
+
+---
+
+## 🚀 Getting Started & How to Run
+
+### 1. Download the Dataset
+The datasets are too large to be hosted on GitHub. You can download the required files from the official **NCI Genomic Data Commons (GDC)** portal:
+👉 **[Download TCGA Pan-Cancer Atlas Data Here](https://gdc.cancer.gov/about-data/publications/pancanatlas)**
+
+*Please ensure the `.tsv` and `.xlsx` files are placed in the same directory as the script.*
+
+### 2. Prerequisites
+Install the required Python libraries:
+```bash
+pip install pandas numpy scikit-learn seaborn matplotlib openpyxl
