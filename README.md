@@ -1,5 +1,7 @@
 # 🧬 Multi-Class Classification of Cancer Types using TCGA Pan-Cancer RNA-Seq Data
-
+![Bioinformatics](https://img.shields.io/badge/Domain-Bioinformatics-red.svg)
+![Dataset](https://img.shields.io/badge/Dataset-TCGA_Pan--Cancer-blue.svg)
+![Accuracy](https://img.shields.io/badge/Accuracy-94.6%25-green.svg)
 This repository contains a high-performance bioinformatics pipeline for classifying 33 different cancer types using high-dimensional genomic data. The project is based on the research and technical paper authored by **Sümeyye Bakırdal**.
 
 ---
@@ -38,6 +40,15 @@ The pipeline implements a rigorous bioinformatics workflow:
 * **Best Performing Model:** Logistic Regression
 * **Validation Accuracy:** **94.6%** (via 5-fold cross-validation).
 * **Finding:** Molecular signatures from RNA-Seq data provide highly accurate markers for cancer type differentiation.
+
+---
+## 📊 Experimental Results
+
+The training performance was monitored through accuracy and loss curves. The graph below illustrates the model's convergence over 10 epochs:
+
+![Training Performance](results/graph.png)
+
+As seen in the results, the model achieved high precision...
 
 ---
 
